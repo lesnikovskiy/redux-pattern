@@ -7,6 +7,8 @@ let reducer: Reducer<number> = (state:  number, action: Action) => {
             return state + 1;
         case "DECREMENT":
             return state - 1;
+        case "PLUS":
+            return state + action.payload;
         default:
             return state;
     }
@@ -20,3 +22,6 @@ console.log(reducer(1, decrementAction));
 
 const unknownAction: Action = { type: "UNKNOWN" };
 console.log(reducer(1, unknownAction));
+
+const plusAction: Action = { type: "PLUS", payload: 50 };
+console.log(reducer(10, plusAction));
