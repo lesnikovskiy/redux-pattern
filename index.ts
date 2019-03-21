@@ -1,5 +1,6 @@
 import { Action } from "./Action";
 import { Reducer } from "./Reducer";
+import { Store } from "./Store";
 
 let reducer: Reducer<number> = (state:  number, action: Action) => {
     switch(action.type) {
@@ -14,14 +15,21 @@ let reducer: Reducer<number> = (state:  number, action: Action) => {
     }
 };
 
+const store = new Store<number>(reducer, 0);
+console.log(store.getState());
+
 const incrementAction: Action = { type: "INCREMENT" };
-console.log(reducer(1, incrementAction));
+store.dispatch(incrementAction);
+console.log(store.getState());
 
 const decrementAction: Action = { type: "DECREMENT" };
-console.log(reducer(1, decrementAction));
+store.dispatch(decrementAction);
+console.log(store.getState());
 
 const unknownAction: Action = { type: "UNKNOWN" };
-console.log(reducer(1, unknownAction));
+store.dispatch(unknownAction);
+console.log(store.getState());
 
 const plusAction: Action = { type: "PLUS", payload: 50 };
-console.log(reducer(10, plusAction));
+store.dispatch(plusAction);
+console.log(store.getState());
